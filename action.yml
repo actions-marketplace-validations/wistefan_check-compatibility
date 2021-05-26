@@ -27,6 +27,10 @@ inputs:
   compatible:
     description: "Compatibility information for operation 'PERSIST_INFO'. Possible values: [True, False]"
     required: false
+  markdownOutput: 
+    description: "File to be created on operation 'MARKDOWN'"
+    required: false
+    default: compatibility.md
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -38,3 +42,4 @@ runs:
     VERSION_ONE: ${{ inputs.versionOne }}
     VERSION_TWO: ${{ inputs.versionTwo }}
     COMPATIBLE: ${{ inputs.compatible }}
+    MARKDOWN_OUTPUT: ${{ inputs.markdownOutput }}

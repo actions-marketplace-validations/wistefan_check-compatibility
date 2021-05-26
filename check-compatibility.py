@@ -14,6 +14,8 @@ versionOne = os.environ['VERSION_ONE']
 componentTwo = os.environ['COMPONENT_TWO']
 versionTwo = os.environ['VERSION_TWO'] 
 compatibility = os.environ['COMPATIBLE']
+markdownOutputFile = os.environ['ROOT_FOLDER'] + "/" + os.environ['MARKDOWN_OUTPUT']
+
 
 class Compatibility(Enum):
     TRUE = 1
@@ -57,7 +59,7 @@ def persist_compatibility_info(compatFilePath, c1, c2, v1, v2, compatible):
     with open(compatFilePath, 'w+') as outfile:
         json.dump(compatInfo, outfile)
 
-def parse_to_markdown(compatFilePath, c1, c2):
+def parse_to_markdown(compatFilePath, c1, c2, outputFile):
     markdown_output = f"| {c1} | {c2} | Compatible | \n |-------|------|-----| \n"
     compatFile = Path(compatFilePath)
     if not compatFile.is_file():
@@ -65,15 +67,17 @@ def parse_to_markdown(compatFilePath, c1, c2):
         sys.exit(1)
     with open(compatFilePath) as json_file:
         compatibilityInformation = json.load(json_file)
-        for info in compatibilityInformation:
+        for info in compatibilityInformation[]:
             print(info)
             v1 = info[c1]
             v2 = info[c2]
             compat = info["compatible"]
             new_line = f"| ```{v1}``` | ```{v2}``` | ```{compat}``` | \n"
             markdown_output += new_line
+    targetFile = open(outputFile, 'w+')
+    targetFile.write(markdown_output)
+    targetFile.close()
     print(markdown_output)
-    return markdown_output
 
 def to_bool(stringValue):
     if stringValue == "True":
@@ -91,4 +95,4 @@ if operation == "IS_COMPATIBLE":
 elif operation == "PERSIST_INFO":
     persist_compatibility_info(compatibilityFile, componentOne, componentTwo, versionOne, versionTwo, to_bool(compatibility))
 elif operation == "MARKDOWN":
-    parse_to_markdown(compatibilityFile, componentOne, componentTwo)
+    parse_to_markdown(compatibilityFile, componentOne, componentTwo, markdownOutputFile)

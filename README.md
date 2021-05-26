@@ -111,6 +111,10 @@ Version of the second component to be handled. **Required** for operations ['IS_
 
 Compatibility information for operation 'PERSIST_INFO'. Possible values: [True, False]
 
+### `markdownOutput`
+
+Outputfile to be created on operation "MARKDOWN".
+
 
 ## Example usage
 
