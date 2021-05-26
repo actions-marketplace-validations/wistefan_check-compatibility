@@ -29,7 +29,7 @@ def check_compatibility(compatFilePath, c1, c2, v1, v2):
 
     with open(compatFilePath) as json_file:
         compatibilityInformation = json.load(json_file)
-        for compatInfo in compatibilityInformation[]:
+        for compatInfo in compatibilityInformation:
             if not c1 in compatInfo or not c2 in compatInfo:
                 continue
             if compatInfo[c1] == v1 and compatInfo[c2] == v2:
@@ -68,7 +68,7 @@ def parse_to_markdown(compatFilePath, c1, c2, outputFile):
         sys.exit(1)
     with open(compatFilePath) as json_file:
         compatibilityInformation = json.load(json_file)
-        for info in compatibilityInformation[]:
+        for info in compatibilityInformation:
             print(info)
             v1 = info[c1]
             v2 = info[c2]
