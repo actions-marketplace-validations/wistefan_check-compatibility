@@ -33,7 +33,7 @@ def check_compatibility(compatFilePath, c1, c2, v1, v2):
             if not c1 in compatInfo or not c2 in compatInfo:
                 continue
             if compatInfo[c1] == v1 and compatInfo[c2] == v2:
-                if to_bool(compatInfo["compatible"]):
+                if compatInfo["compatible"] == True:
                     return Compatibility.TRUE
                 else:
                     return Compatibility.FALSE

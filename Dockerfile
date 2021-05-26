@@ -8,6 +8,7 @@ ENV COMPONENT_TWO="C_2"
 ENV VERSION_ONE="V_1"
 ENV VERSION_TWO="V_2"
 ENV COMPATIBLE="false"
+ENV MARKDOWN_OUTPUT="compatibility.md"
 
 WORKDIR /usr/src/app
 
