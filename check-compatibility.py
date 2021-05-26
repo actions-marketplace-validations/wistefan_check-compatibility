@@ -66,6 +66,7 @@ def parse_to_markdown(compatFilePath, c1, c2):
     with open(compatFilePath) as json_file:
         compatibilityInformation = json.load(json_file)
         for info in compatibilityInformation:
+            print(info)
             v1 = info[c1]
             v2 = info[c2]
             compat = info["compatible"]
