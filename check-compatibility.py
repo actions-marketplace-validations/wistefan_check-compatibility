@@ -47,7 +47,8 @@ def persist_compatibility_info(compatFilePath, c1, c2, v1, v2, compatible):
         compatInfo = json.load(open(compatFilePath))
     new_info = {c1: v1, c2: v2, "compatible": compatible}
     old_element = {}
-    for info in compatInfo[]:
+    for info in compatInfo:
+        print(info)
         if not c1 in info or not c2 in info:
             continue
         if info[c1] == v1 and info[c2] == v2:
