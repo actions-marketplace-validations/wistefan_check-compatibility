@@ -1,0 +1,40 @@
+name: 'Check compatibility'
+description: 'Action to persist and read compatibility informations.'
+author: stefan.wiedemann@fiware.org
+branding:
+  icon: 'check'
+  color: 'green'
+inputs:
+  operation:
+    description: 'The operation to be executed. Possible values: ["IS_COMPATIBLE", "PERSIST_INFO", "MARKDOWN"]'
+    required: false
+    default: "IS_COMPATIBLE"
+  compatibilityFile:
+    description: 'Path to the compatibility file.'
+    required: true
+  componentOne:
+    description: 'Name of the first component to be handled'
+    required: true
+  componentTwo:
+    description: 'Name of the second component to be handled'
+    required: true
+  versionOne:
+    description: "Version of the first component to be handled. Required for operations ['IS_COMPATIBLE', 'PERSIST_INFO']" 
+    required: false
+  versionTwo:
+    description: "Version of the second component to be handled. Required for operations ['IS_COMPATIBLE', 'PERSIST_INFO']" 
+    required: false
+  compatible:
+    description: "Compatibility information for operation 'PERSIST_INFO'. Possible values: [True, False]"
+    required: false
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    OPERATION: ${{ inputs.operation }}
+    COMPATIBILITY_FILE: ${{ inputs.compatibilityFile }}
+    COMPONENT_ONE: ${{ inputs.componentOne }}
+    COMPONENT_TWO: ${{ inputs.componentTwo }}
+    VERSION_ONE: ${{ inputs.versionOne }}
+    VERSION_TWO: ${{ inputs.versionTwo }}
+    COMPATIBLE: ${{ inputs.compatible }}
