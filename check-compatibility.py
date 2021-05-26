@@ -54,7 +54,7 @@ def persist_compatibility_info(compatFilePath, c1, c2, v1, v2, compatible):
         compatInfo.remove(old_element)
     compatInfo.append(new_info)
     print(compatInfo)
-    with open(compatFilePath, 'w') as outfile:
+    with open(compatFilePath, 'w+') as outfile:
         json.dump(compatInfo, outfile)
 
 def parse_to_markdown(compatFilePath, c1, c2):
